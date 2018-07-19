@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDo List</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/ToDO.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="assets/js/lib/jquery-3.3.1.min.js"></script>
+
+	
+</head>
+<body>
+	<div id="container">
+
+<h1>To-Do List <i class="fa fa-plus"></i></h1>
+<input type="text" placeholder="Add New ToDo">
+
+<ul>
+	<li><span><i class="fa fa-trash"></i></span> Go for Interview</li>
+	<li><span><i class="fa fa-trash"></i></span> Passport Renewal</li>
+	<li><span><i class="fa fa-trash"></i></span> Buy Groceries</li>
+	<li><span><i class="fa fa-trash"></i></span> Pay Electricity Bill</li>
+	<li><span><i class="fa fa-trash"></i></span> Check for Internships</li>
+	<li><span><i class="fa fa-trash"></i></span> Wash Bedsheet </li>
+</ul>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">// Check Off Specific Todos By Clicking
+$("ul").on("click", "li", function(){
+	$(this).toggleClass("completed");
+});
+
+//Click on X to delete Todo
+$("ul").on("click", "span", function(event){
+	$(this).parent().fadeOut(500,function(){
+		$(this).remove();
+	});
+	event.stopPropagation();
+});
+
+$("input[type='text']").keypress(function(event){
+	if(event.which === 13){
+		//grabbing new todo text from input
+		var todoText = $(this).val();
+		$(this).val("");
+		//create a new li and add to ul
+		$("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todoText + "</li>")
+	}
+});
+
+$(".fa-plus").click(function(){
+	$("input[type='text']").fadeToggle();
+});</script>
+</body>
+</html>
